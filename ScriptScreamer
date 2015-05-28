@@ -1,0 +1,23 @@
+#pragma strict
+
+
+var flame : GameObject;
+private var survivalScript : Survivalcontroller;
+
+function Start () {
+
+	flame.SetActive(false);
+	survivalScript = GameObject.Find("First Person Controller").GetComponent(Survivalcontroller);
+
+}
+
+function OnTriggerEnter () { flame.SetActive (true);}
+function OnTriggerStay (Col : Collider) {
+		if(Col.tag == "Player")
+		{
+		survivalScript.currentHealth -= Time.deltaTime / 0.5;
+		} 
+}
+
+
+function OnTriggerExit () { flame.SetActive(false); }
